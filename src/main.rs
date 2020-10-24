@@ -22,6 +22,7 @@ fn find_dir(to_match: &str, media: &str) -> Option<DirEntry> {
         let dir_lebenstein = levenshtein(to_match,  dir_name );
         let mut dir_regex = RegexBuilder::new(regex.as_str());
         dir_regex.ignore_whitespace(true);
+        dir_regex.case_insensitive(true);
     
         let dir_regex = dir_regex.build().unwrap();
             
@@ -54,7 +55,7 @@ fn find_dir(to_match: &str, media: &str) -> Option<DirEntry> {
                 more_specific_path = line
             }, 
             Err(_) => {
-                println!("Bye !");
+                println!("Bye");
                 std::process::exit(1);
                 
             }
